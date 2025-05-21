@@ -8,7 +8,7 @@ local M = {}
 --- By default, it includes "scss", "css", "sass", and "less". It will use whichever comes first in that order.
 ---@field style_formats string[]
 
----@type NgSwitchConfig 
+---@type NgSwitchConfig
 local defaults = {
 	is_vsplit = false,
 	style_formats = { "scss", "css", "sass", "less" },
@@ -19,7 +19,7 @@ local defaults = {
 local function get_file_extension(ext)
 	local full_path = vim.api.nvim_buf_get_name(0)
 	-- HACK: This is a workaround for the issue where the file name is not always available in the buffer.
-	local base = vim.fn.fnamemodify(full_path, ":r"):gsub("%.spec$", "") 
+	local base = vim.fn.fnamemodify(full_path, ":r"):gsub("%.spec$", "")
 	local file = base .. "." .. ext
 	if vim.fn.filereadable(file) == 0 then
 		return nil
@@ -29,14 +29,13 @@ local function get_file_extension(ext)
 end
 
 local function open_file(file)
-	if M.config.openSideBySide then
+	if M.config.is_vsplit then
 		vim.cmd("vsplit " .. file)
 	else
 		vim.cmd("edit " .. file)
 	end
 end
 
--- TODO: Handle different types of stylesheets (CSS, SCSS, SASS)
 vim.api.nvim_create_user_command("NgSwitchHTML", function()
 	local file = get_file_extension("html")
 	if file then
@@ -51,7 +50,6 @@ vim.api.nvim_create_user_command("NgSwitchTS", function()
 	end
 end, { force = true })
 
--- BUG: When trying to switching to anothe file from a spec
 vim.api.nvim_create_user_command("NgSwitchSpec", function()
 	local file = get_file_extension("spec.ts")
 	if file then
@@ -71,6 +69,7 @@ vim.api.nvim_create_user_command("NgSwitchCSS", function()
 end, { force = true })
 
 function M.setup(opts)
+	---@type NgSwitchConfig
 	M.config = vim.tbl_deep_extend("force", defaults, opts or {})
 end
 
