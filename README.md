@@ -23,10 +23,10 @@ Use your favorite plugin manager. For example, with [lazy.nvim](https://github.c
       style_formats = { "scss", "css", "sass", "less" }, -- Order of style extensions to check
   },
   keys = {
-    { "<leader>nh", "<cmd>NgSwitchHTML<CR>", desc = "Switch to HTML file", noremap = true, silent = true },
-    { "<leader>nt", "<cmd>NgSwitchTS<CR>", desc = "Switch to TypeScript file", noremap = true, silent = true },
-    { "<leader>ns", "<cmd>NgSwitchSpec<CR>", desc = "Switch to Spec file", noremap = true, silent = true },
-    { "<leader>nc", "<cmd>NgSwitchCSS<CR>", desc = "Switch to Style file", noremap = true, silent = true },
+    { "<leader>nh", "<cmd>NgSwitchHTML<CR>", desc = "Switch to HTML file" },
+    { "<leader>nt", "<cmd>NgSwitchTS<CR>", desc = "Switch to TypeScript file" },
+    { "<leader>ns", "<cmd>NgSwitchSpec<CR>", desc = "Switch to Spec file" },
+    { "<leader>nc", "<cmd>NgSwitchCSS<CR>", desc = "Switch to Style file" },
   }
 }
 ```
